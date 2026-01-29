@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản - Viet-Tour</title>
+    <style>
+        /* Sử dụng lại Style của trang Login để đồng bộ */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 20px;
+        }
+
+        .register-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        .register-container h2 { color: #333; margin-bottom: 20px; text-transform: uppercase; }
+
+        .input-row { display: flex; gap: 10px; } /* Chia cột cho Họ và Tên */
+
+        .input-group { text-align: left; margin-bottom: 15px; }
+        .input-group label { display: block; margin-bottom: 5px; color: #555; font-weight: 600; font-size: 14px; }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .input-group input:focus { border-color: #2a5298; }
+
+        .btn-register {
+            width: 100%;
+            padding: 12px;
+            background: #28a745; /* Màu xanh lá đặc trưng cho Đăng ký */
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-register:hover { background: #218838; transform: translateY(-2px); }
+
+        .footer-links { margin-top: 15px; font-size: 13px; }
+        .footer-links a { color: #2a5298; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="register-container">
+    <h2>TẠO TÀI KHOẢN</h2>
+    <p style="color: #777; font-size: 14px; margin-bottom: 20px;">Tham gia cùng chúng tôi để nhận ưu đãi tour tốt nhất</p>
+
+    <form id="registerForm">
+        <div class="input-row">
+            <div class="input-group" style="flex: 1;">
+                <label>Họ và tên</label>
+                <input type="text" placeholder="VD: Nguyễn Văn A" required>
+            </div>
+            <div class="input-group" style="flex: 1;">
+                <label>Số điện thoại</label>
+                <input type="tel" placeholder="090..." required>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email" placeholder="example@gmail.com" required>
+        </div>
+
+        <div class="input-group">
+            <label>Tên đăng nhập</label>
+            <input type="text" id="reg-user" placeholder="Tên dùng để đăng nhập" required>
+        </div>
+
+        <div class="input-group">
+            <label>Mật khẩu</label>
+            <input type="password" id="reg-pass" placeholder="Ít nhất 6 ký tự" required>
+        </div>
+
+        <div class="input-group">
+            <label>Xác nhận mật khẩu</label>
+            <input type="password" id="confirm-pass" placeholder="Nhập lại mật khẩu" required>
+        </div>
+
+        <button type="button" class="btn-register" onclick="handleRegister()">ĐĂNG KÝ NGAY</button>
+    </form>
+
+    <div class="footer-links">
+        Đã có tài khoản? <a href="login.html">Đăng nhập tại đây</a>
+    </div>
+</div>
+
+<script>
+    function handleRegister() {
+        const pass = document.getElementById('reg-pass').value;
+        const confirm = document.getElementById('confirm-pass').value;
+
+        if (pass !== confirm) {
+            alert("Mật khẩu xác nhận không khớp!");
+            return;
+        }
+
+        if (pass.length < 6) {
+            alert("Mật khẩu phải có ít nhất 6 ký tự!");
+            return;
+        }
+
+        alert("Đăng ký thành công! Hệ thống sẽ chuyển bạn về trang đăng nhập.");
+        window.location.href = "login.html";
+    }
+</script>
+
+</body>
+</html>
