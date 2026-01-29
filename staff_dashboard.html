@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard - Điều hành Tour</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --staff-primary: #34495e;
+            --staff-secondary: #e67e22;
+            --bg-body: #f0f2f5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+        body { display: flex; background-color: var(--bg-body); }
+
+        /* Sidebar dành cho Nhân viên */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            background: var(--staff-primary);
+            color: white;
+            position: fixed;
+        }
+
+        .sidebar-header {
+            padding: 25px;
+            text-align: center;
+            background: #2c3e50;
+            font-weight: bold;
+            border-bottom: 1px solid #455a64;
+        }
+
+        .menu { list-style: none; padding: 20px 0; }
+        .menu li {
+            padding: 15px 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .menu li:hover, .menu li.active {
+            background: #4e6a85;
+            border-left: 4px solid var(--staff-secondary);
+        }
+
+        .menu i { margin-right: 12px; width: 20px; }
+
+        /* Vùng nội dung chính */
+        .main {
+            margin-left: 260px;
+            width: calc(100% - 260px);
+            padding: 25px;
+        }
+
+        .top-bar {
+            background: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+
+        /* Danh sách công việc cần xử lý */
+        .task-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .card h3 { margin-bottom: 20px; color: #333; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; font-size: 14px; }
+        th { color: #666; font-weight: 600; }
+
+        .btn-confirm { background: #27ae60; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
+        .btn-detail { background: #3498db; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
+
+        .badge-pending { background: #fff3e0; color: #ef6c00; padding: 4px 8px; border-radius: 12px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+   <div class="sidebar">
+        <div class="sidebar-header">STAFF WORKPLACE</div>
+        <ul class="menu">
+            <li onclick="showProfile()"><i class="fas fa-user-circle"></i> Hồ sơ cá nhân</li>
+            
+            <li class="active"><i class="fas fa-tasks"></i> Chờ xác nhận</li>
+            <li><i class="fas fa-calendar-check"></i> Tour sắp khởi hành</li>
+            <li><i class="fas fa-user-edit"></i> Quản lý khách hàng</li>
+            <li><i class="fas fa-comments"></i> Hỗ trợ trực tuyến</li>
+            
+            <hr style="border: 0.5px solid #455a64; margin: 10px 20px;"> <li onclick="window.location.href='login.html'"><i class="fas fa-sign-out-alt"></i> Đăng xuất</li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <div class="top-bar">
+            <h3>Điều hành: Nguyễn Văn Viên</h3>
+            <div>
+                <span style="margin-right: 15px;"><i class="fas fa-bell"></i> (3)</span>
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </div>
+
+        <div class="task-container">
+            <div class="card">
+                <h3>Đơn đặt chỗ mới (Booking)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã Đơn</th>
+                            <th>Khách hàng</th>
+                            <th>Tour</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#BK992</td>
+                            <td>Trần Thị B</td>
+                            <td>Phú Quốc 4N3Đ</td>
+                            <td><span class="badge-pending">Chờ thanh toán</span></td>
+                            <td>
+                                <button class="btn-confirm">Duyệt</button>
+                                <button class="btn-detail">Xem</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#BK991</td>
+                            <td>Lê Văn C</td>
+                            <td>Sapa Mờ Sương</td>
+                            <td><span class="badge-pending">Chờ xác nhận</span></td>
+                            <td>
+                                <button class="btn-confirm">Duyệt</button>
+                                <button class="btn-detail">Xem</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Lời nhắc hôm nay</h3>
+                <ul style="list-style: none; font-size: 14px;">
+                    <li style="margin-bottom: 10px; color: #e74c3c;"><i class="fas fa-exclamation-circle"></i> Tour Đà Lạt khởi hành lúc 05:00 sáng mai.</li>
+                    <li style="margin-bottom: 10px; color: #2980b9;"><i class="fas fa-info-circle"></i> Liên hệ khách hàng #BK990 để xác nhận lại số người.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
